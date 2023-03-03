@@ -13,11 +13,11 @@ export default function SideNav() {
   return (
     <div className="mr-60">
       <div className="flex fixed">
-        <div className="relative h-screen">
+        <div className="relative h-screen -z-10 bg-black">
           <img
             src={bgImg || "/1.png"}
             alt="background"
-            className="w-60 h-screen object-cover fixed -z-10"
+            className="w-60 h-screen object-cover fixed -z-10 opacity-80"
           />
           <img
             src={logo}
@@ -35,7 +35,14 @@ export default function SideNav() {
           </ul>
           <footer className="absolute bottom-4 text-white text-xs text-center w-full font-semibold">
             <h5>Legen_sia</h5>
-            <h5>made by taehun</h5>
+            <a
+              href="https://taehun0933.tistory.com/"
+              target="_blank"
+              rel="noreferrer"
+            >
+              made by taehun0933
+              {/* 이거 hover 시 커지게 만들어야함 */}
+            </a>
           </footer>
         </div>
       </div>
