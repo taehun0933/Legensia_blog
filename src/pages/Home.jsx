@@ -46,7 +46,7 @@ export default function Home() {
         <img
           src={logo}
           alt="logo"
-          className={`w-40 m-auto opacity-60 transition-all duration-1000 max-md:w-32 logoShadow ${
+          className={`w-40 m-auto opacity-60 transition-all duration-1000 max-md:w-32 ${
             contact && "translate-y-24 hover:cursor-pointer"
           }`}
           onClick={() => {
@@ -66,7 +66,7 @@ export default function Home() {
             src={`${bgImg ? bgImg : "/1.png"}`}
             alt="background"
             ref={backgroundImg}
-            className="w-bgDefault h-bgDefault object-cover opacity-90"
+            className="w-screen h-bgDefault object-cover opacity-90"
           />
         </div>
         <div className="absolute bottom-5 w-full">
