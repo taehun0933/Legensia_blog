@@ -9,7 +9,7 @@ export default function SearchHeader() {
     // <header className="mt-7 mb-10 flex items-center">
     <div className="pt-28 flex w-full">
       <div className="fixed bg-white w-full h-28 top-0">
-        <header className="mt-7 mb-10 flex items-center fixed top-0 left-0 right-0 px-24">
+        <header className="mt-7 mb-10 flex items-center fixed top-0 left-0 right-0 px-24 max-md:px-12">
           <img
             src="/logo.svg"
             alt="logo"
@@ -20,7 +20,7 @@ export default function SearchHeader() {
           />
           <input
             type="text"
-            className="w-1/3 border border-gray-500 m-auto rounded-full outline-none px-3 py-2 max-md:w-2/3 relative left-40 max-md:left-0"
+            className="w-1/3 border border-gray-500 m-auto rounded-full outline-none px-3 py-2 max-md:w-2/3 relative left-32 max-md:left-0"
           />
           <nav className="flex gap-3">
             <img
