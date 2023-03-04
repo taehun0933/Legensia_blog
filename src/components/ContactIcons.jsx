@@ -21,8 +21,7 @@ export default function ContactIcons({ showContactIcons }) {
         />
         <ContactIcon
           src="mail"
-          url="https://www.instagram.com/legen_sia/"
-          // 추후 현석형 계정으로 이메일 작성하게 변경
+          url="mailto:legensia@gmail.com"
           showContactIcons={showContactIcons}
         />
       </div>

@@ -42,11 +42,11 @@ export default function Home() {
   }, [refConnected]);
   return (
     <>
-      <div className="flex flex-col items-center mt-20">
+      <div className="flex flex-col items-center mt-20 max-md:mt-32">
         <img
           src={logo}
           alt="logo"
-          className={`w-40 m-auto opacity-60 transition-all duration-1000 max-md:w-32 ${
+          className={`w-40 m-auto opacity-60 transition-all duration-1000 max-md:w-32 logoShadow ${
             contact && "translate-y-24 hover:cursor-pointer"
           }`}
           onClick={() => {
@@ -61,11 +61,12 @@ export default function Home() {
           contact && "translate-y-48"
         }`}
       >
-        <div className="bg-white">
+        <div className="bg-black">
           <img
             src={`${bgImg ? bgImg : "/1.png"}`}
             alt="background"
             ref={backgroundImg}
+            className="w-bgDefault h-bgDefault object-cover opacity-90"
           />
         </div>
         <div className="absolute bottom-5 w-full">

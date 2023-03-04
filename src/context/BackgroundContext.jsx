@@ -1,15 +1,23 @@
-import React, { createContext, useContext, useState } from "react";
+import React, { createContext, useContext, useEffect, useState } from "react";
 
 export const BackgroundContext = createContext();
 
 export default function BackgroundProvider({ children }) {
-  const [bgImg, setBgImg] = useState("/1.png");
-  // bgImg에는 데이터베이스 상에서 받아온 배경 이미지들이 들어 있음.
-  const [bgNum, setBgNum] = useState(2);
+  const [imageList, setImageList] = useState();
+  // 추후엔 db에서 데이터를 가져 옴.
+  let bgNum = 0;
   // bgNum에서는 숫자를 다룸. 이 숫자를 통해 bgImg에 접근하여 해당하는 인덱스의 url로 이미지를 교체 처리함.(하도록 추후 변경)
+  const [bgImg, setBgImg] = useState(imageList && imageList[bgNum]);
+  // imageList에서 bgNum번째 원소를 추출하여, bgImg로 설정.
+
+  useEffect(() => {
+    // imageList db로부터 업데이트하도록 변경해야 함.
+    setImageList(["/1.png", "/2.png", "/3.png"]);
+  }, []);
 
   const bgChangeWithAnimation = (backgroundImg) => {
-    setBgNum(bgNum === 3 ? 1 : bgNum + 1);
+    bgNum === 2 ? (bgNum = 0) : (bgNum += 1);
+    console.log(bgNum);
     backgroundImg.style.opacity = 1;
     const fadeEffect = setInterval(function () {
       const opacity = parseFloat(backgroundImg.style.opacity);
@@ -17,7 +25,7 @@ export default function BackgroundProvider({ children }) {
         backgroundImg.style.opacity = (opacity - 0.04).toString();
       else {
         clearInterval(fadeEffect);
-        setBgImg(`${bgNum}.png`);
+        setBgImg(`${imageList[bgNum]}`);
         fadeIn(backgroundImg);
       }
     }, 15);
@@ -31,15 +39,8 @@ export default function BackgroundProvider({ children }) {
     }, 15);
   };
 
-  const test = () => {
-    setBgNum(bgNum === 3 ? 1 : bgNum + 1);
-    setBgImg(`${bgNum}.png`);
-  };
-
   return (
-    <BackgroundContext.Provider
-      value={{ bgChangeWithAnimation, bgNum, bgImg, test }}
-    >
+    <BackgroundContext.Provider value={{ bgChangeWithAnimation, bgNum, bgImg }}>
       {children}
     </BackgroundContext.Provider>
   );
