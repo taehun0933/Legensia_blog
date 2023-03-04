@@ -16,7 +16,8 @@ const router = createBrowserRouter([
     element: (
       <div className="flex">
         <SideNav />
-        <div className="flex-col w-full px-24">
+        <div className="flex-col w-full px-24 max-md:px-12">
+          {/* <div className="flex-col w-full px-24 max-md:px-12 pt-32"> */}
           <SearchHeader />
           <Outlet />
         </div>

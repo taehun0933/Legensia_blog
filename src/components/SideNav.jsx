@@ -10,7 +10,7 @@ export default function SideNav() {
   const WHITE_BOLD_TEXT =
     "text-white uppercase m-auto font-bold text-lg hover:cursor-pointer textShadow";
   return (
-    <div className="mr-60">
+    <div className="mr-60 max-md:hidden">
       <div className="flex fixed">
         <div className="relative h-screen -z-10 bg-black">
           <img
