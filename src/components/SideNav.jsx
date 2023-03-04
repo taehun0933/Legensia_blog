@@ -1,7 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { useBackgroundContext } from "../context/BackgroundContext";
-import logo from "../logo.svg";
 
 export default function SideNav() {
   const { bgImg } = useBackgroundContext();
@@ -9,7 +8,7 @@ export default function SideNav() {
   // 그렇기에, 공통된 값을 가지도록 index.js의 App 컴포넌트(전체를 아우르는)를 Provider로 감싸 주었음. 문제 해결!
   const navigate = useNavigate();
   const WHITE_BOLD_TEXT =
-    "text-white uppercase m-auto font-bold text-lg hover:cursor-pointer";
+    "text-white uppercase m-auto font-bold text-lg hover:cursor-pointer textShadow";
   return (
     <div className="mr-60">
       <div className="flex fixed">
@@ -20,7 +19,7 @@ export default function SideNav() {
             className="w-60 h-screen object-cover fixed -z-10 opacity-80"
           />
           <img
-            src={logo}
+            src="/Wlogo.svg"
             alt="logo"
             className="w-40 m-auto mt-10 hover:cursor-pointer"
             onClick={() => {

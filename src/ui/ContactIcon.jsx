@@ -8,7 +8,7 @@ export default function ContactIcon({ src, url, showContactIcons }) {
       }}
       disabled={!showContactIcons}
     >
-      <img src={`/${src}.png`} alt={src} className="w-6"></img>
+      <img src={`/${src}_w.png`} alt={src} className="w-6"></img>
     </button>
   );
 }

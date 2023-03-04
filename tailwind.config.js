@@ -3,11 +3,7 @@ module.exports = {
   content: ["./src/**/*.{js,jsx}"],
   theme: {
     extend: {
-      width: {
-        bgDefault: "1470px",
-      },
       height: {
-        // bgDefault: "calc(100vh+200px)",
         bgDefault: "130vh",
       },
       screens: {

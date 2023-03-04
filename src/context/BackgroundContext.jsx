@@ -5,7 +5,7 @@ export const BackgroundContext = createContext();
 export default function BackgroundProvider({ children }) {
   const [imageList, setImageList] = useState();
   // 추후엔 db에서 데이터를 가져 옴.
-  let bgNum = 0;
+  const [bgNum, setBgNum] = useState(1);
   // bgNum에서는 숫자를 다룸. 이 숫자를 통해 bgImg에 접근하여 해당하는 인덱스의 url로 이미지를 교체 처리함.(하도록 추후 변경)
   const [bgImg, setBgImg] = useState(imageList && imageList[bgNum]);
   // imageList에서 bgNum번째 원소를 추출하여, bgImg로 설정.
@@ -16,9 +16,9 @@ export default function BackgroundProvider({ children }) {
   }, []);
 
   const bgChangeWithAnimation = (backgroundImg) => {
-    bgNum === 2 ? (bgNum = 0) : (bgNum += 1);
+    setBgNum(bgNum === 2 ? 0 : bgNum + 1);
     console.log(bgNum);
-    backgroundImg.style.opacity = 1;
+    backgroundImg.style.opacity = 0.9;
     const fadeEffect = setInterval(function () {
       const opacity = parseFloat(backgroundImg.style.opacity);
       if (opacity > 0)
@@ -33,7 +33,7 @@ export default function BackgroundProvider({ children }) {
   const fadeIn = (backgroundImg) => {
     const fadeEffect = setInterval(function () {
       const opacity = parseFloat(backgroundImg.style.opacity);
-      if (opacity < 1)
+      if (opacity < 0.9)
         backgroundImg.style.opacity = (opacity + 0.04).toString();
       else clearInterval(fadeEffect);
     }, 15);

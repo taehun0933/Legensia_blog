@@ -2,7 +2,6 @@ import React, { useEffect, useRef, useState } from "react";
 import ContactIcons from "../components/ContactIcons";
 import NavBar from "../components/NavBar";
 import { useBackgroundContext } from "../context/BackgroundContext";
-import logo from "../logo.svg";
 
 export default function Home() {
   useEffect(() => {
@@ -44,7 +43,7 @@ export default function Home() {
     <>
       <div className="flex flex-col items-center mt-20 max-md:mt-32">
         <img
-          src={logo}
+          src={"/Wlogo.svg"}
           alt="logo"
           className={`w-40 m-auto opacity-60 transition-all duration-1000 max-md:w-32 ${
             contact && "translate-y-24 hover:cursor-pointer"
@@ -66,7 +65,8 @@ export default function Home() {
             src={`${bgImg ? bgImg : "/1.png"}`}
             alt="background"
             ref={backgroundImg}
-            className="w-screen h-bgDefault object-cover opacity-90"
+            className="w-screen h-bgDefault object-cover"
+            // BackgroundContext에서 opacity 90으로 설정해서, 살짝 어둡게 설정해 주었음.
           />
         </div>
         <div className="absolute bottom-5 w-full">

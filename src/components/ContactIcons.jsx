@@ -25,7 +25,9 @@ export default function ContactIcons({ showContactIcons }) {
           showContactIcons={showContactIcons}
         />
       </div>
-      <p className="opacity-60">legensia@gmail.com</p>
+      <p className="opacity-60 text-white textShadow mt-1">
+        legensia@gmail.com
+      </p>
     </div>
   );
 }
