@@ -4,7 +4,7 @@ import NavButton from "../ui/NavButton";
 export default function NavBar({ toggleContact, contact }) {
   return (
     <ul
-      className={`flex justify-between w-2/5 -mt-32 transition-all duration-1000 ${
+      className={`flex justify-between w-2/5 -mt-32 transition-all duration-1000 max-lg:flex-col max-lg:items-center max-lg:w-full ${
         contact && "-translate-y-44 opacity-0"
       }`}
     >

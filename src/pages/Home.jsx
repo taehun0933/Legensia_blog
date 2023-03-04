@@ -46,7 +46,7 @@ export default function Home() {
         <img
           src={logo}
           alt="logo"
-          className={`w-40 m-auto opacity-60 transition-all duration-1000 ${
+          className={`w-40 m-auto opacity-60 transition-all duration-1000 max-md:w-32 ${
             contact && "translate-y-24 hover:cursor-pointer"
           }`}
           onClick={() => {
