@@ -38,9 +38,9 @@ export default function SideNav() {
               href="https://taehun0933.tistory.com/"
               target="_blank"
               rel="noreferrer"
+              className="animate-spin"
             >
-              made by taehun0933
-              {/* 이거 hover 시 커지게 만들어야함 */}
+              <div className="animate-bounce">made by taehun0933</div>
             </a>
           </footer>
         </div>

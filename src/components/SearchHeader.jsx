@@ -20,7 +20,7 @@ export default function SearchHeader() {
           />
           <input
             type="text"
-            className="w-1/3 border border-gray-500 m-auto rounded-full outline-none px-3 py-2 max-md:w-2/3 relative left-32 max-md:left-0"
+            className="w-1/3 border border-gray-500 m-auto rounded-full outline-none px-3 py-2 max-md:w-1/2 relative left-32 max-md:left-0"
           />
           <nav className="flex gap-3">
             <img
