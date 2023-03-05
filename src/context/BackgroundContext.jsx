@@ -39,6 +39,19 @@ export default function BackgroundProvider({ children }) {
   // };
 
   const bgChangeWithAnimation = (backgroundImg) => {
+    // getEventListers라는 콘솔용 api라서 사용 불가능. 때문에 우회적으로 이벤트 등록과 동시에 관련된 classList를 추가하여 중복 등록을 방지해 줌.
+    if (!backgroundImg.classList.contains("loadEventListener")) {
+      backgroundImg.classList.add("loadEventListener");
+      backgroundImg.addEventListener("load", () => {
+        if (backgroundImg.style.opacity === 0)
+          backgroundImg.style.opacity = 0.9;
+        else
+          setTimeout(() => {
+            backgroundImg.style.opacity = 0.9;
+          }, 1000);
+      });
+    }
+
     backgroundImg.style.opacity = 0;
     setBgNum(bgNum === 2 ? 0 : bgNum + 1);
     setBgImg(`${imageList[bgNum]}`);
