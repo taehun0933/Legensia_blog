@@ -15,27 +15,33 @@ export default function BackgroundProvider({ children }) {
     setImageList(["/1.png", "/2.png", "/3.png"]);
   }, []);
 
+  // const bgChangeWithAnimation = (backgroundImg) => {
+  //   setBgNum(bgNum === 2 ? 0 : bgNum + 1);
+  //   backgroundImg.style.opacity = 0.9;
+  //   const fadeEffect = setInterval(function () {
+  //     const opacity = parseFloat(backgroundImg.style.opacity);
+  //     if (opacity > 0)
+  //       backgroundImg.style.opacity = (opacity - 0.04).toString();
+  //     else {
+  //       setBgImg(`${imageList[bgNum]}`);
+  //       clearInterval(fadeEffect);
+  //       fadeIn(backgroundImg);
+  //     }
+  //   }, 15);
+  // };
+  // const fadeIn = (backgroundImg) => {
+  //   const fadeEffect = setInterval(function () {
+  //     const opacity = parseFloat(backgroundImg.style.opacity);
+  //     if (opacity < 0.9)
+  //       backgroundImg.style.opacity = (opacity + 0.04).toString();
+  //     else clearInterval(fadeEffect);
+  //   }, 15);
+  // };
+
   const bgChangeWithAnimation = (backgroundImg) => {
+    backgroundImg.style.opacity = 0;
     setBgNum(bgNum === 2 ? 0 : bgNum + 1);
-    backgroundImg.style.opacity = 0.9;
-    const fadeEffect = setInterval(function () {
-      const opacity = parseFloat(backgroundImg.style.opacity);
-      if (opacity > 0)
-        backgroundImg.style.opacity = (opacity - 0.04).toString();
-      else {
-        clearInterval(fadeEffect);
-        setBgImg(`${imageList[bgNum]}`);
-        fadeIn(backgroundImg);
-      }
-    }, 15);
-  };
-  const fadeIn = (backgroundImg) => {
-    const fadeEffect = setInterval(function () {
-      const opacity = parseFloat(backgroundImg.style.opacity);
-      if (opacity < 0.9)
-        backgroundImg.style.opacity = (opacity + 0.04).toString();
-      else clearInterval(fadeEffect);
-    }, 15);
+    setBgImg(`${imageList[bgNum]}`);
   };
 
   const bgChange = () => {
