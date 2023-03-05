@@ -4,9 +4,8 @@ import { useBackgroundContext } from "../context/BackgroundContext";
 
 export default function SearchHeader() {
   const navigate = useNavigate();
-  const { test } = useBackgroundContext();
+  const { bgChange } = useBackgroundContext();
   return (
-    // <header className="mt-7 mb-10 flex items-center">
     <div className="pt-28 flex w-full">
       <div className="fixed bg-white w-full h-28 top-0">
         <header className="mt-7 mb-10 flex items-center fixed top-0 left-0 right-0 px-24 max-md:px-12">
@@ -27,9 +26,7 @@ export default function SearchHeader() {
               src="/background.svg"
               alt="backgroundLogo"
               className="w-5 hover:cursor-pointer"
-              onClick={() => {
-                test();
-              }}
+              onClick={bgChange}
             />
             <img
               src="/home.svg"

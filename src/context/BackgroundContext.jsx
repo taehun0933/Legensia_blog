@@ -17,7 +17,6 @@ export default function BackgroundProvider({ children }) {
 
   const bgChangeWithAnimation = (backgroundImg) => {
     setBgNum(bgNum === 2 ? 0 : bgNum + 1);
-    console.log(bgNum);
     backgroundImg.style.opacity = 0.9;
     const fadeEffect = setInterval(function () {
       const opacity = parseFloat(backgroundImg.style.opacity);
@@ -39,8 +38,15 @@ export default function BackgroundProvider({ children }) {
     }, 15);
   };
 
+  const bgChange = () => {
+    setBgNum(bgNum === 2 ? 0 : bgNum + 1);
+    setBgImg(`${imageList[bgNum]}`);
+  };
+
   return (
-    <BackgroundContext.Provider value={{ bgChangeWithAnimation, bgNum, bgImg }}>
+    <BackgroundContext.Provider
+      value={{ bgChangeWithAnimation, bgNum, bgImg, bgChange }}
+    >
       {children}
     </BackgroundContext.Provider>
   );

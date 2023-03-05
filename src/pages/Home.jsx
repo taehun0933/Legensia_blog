@@ -67,6 +67,9 @@ export default function Home() {
             ref={backgroundImg}
             className="w-screen h-bgDefault object-cover"
             // BackgroundContext에서 opacity 90으로 설정해서, 살짝 어둡게 설정해 주었음.
+            onLoad={() => {
+              console.log("로딩 완료됨");
+            }}
           />
         </div>
         <div className="absolute bottom-5 w-full">
@@ -82,3 +85,5 @@ export default function Home() {
     </>
   );
 }
+
+// 디졸브 효과 : 동시에 두 개의 요소 필요.
