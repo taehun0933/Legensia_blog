@@ -65,7 +65,7 @@ export default function Home() {
             src={`${bgImg ? bgImg : "/1.png"}`}
             alt="background"
             ref={backgroundImg}
-            className="w-screen h-bgDefault object-cover transition-opacity opacity-90 duration-1000"
+            className="w-screen h-bgDefault object-cover opacity-90"
             // BackgroundContext에서 opacity 90으로 설정해서, 살짝 어둡게 설정해 주었음.
           />
         </div>
