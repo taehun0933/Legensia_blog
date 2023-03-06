@@ -22,13 +22,15 @@ export default function BackgroundProvider({ children }) {
   const bgChangeWithAnimation = (backgroundImg) => {
     let loadEnd = false;
     let fadeOutEnd = false;
-    if (!backgroundImg.classList.contains("loadEventListener")) {
-      backgroundImg.classList.add("loadEventListener");
-      backgroundImg.addEventListener("load", () => {
-        loadEnd = true;
-        console.log("로드가 끝났어요.");
-      });
-    }
+    // 이거 왜 안됨?
+    // if (!backgroundImg.classList.contains("loadEventListener")) {
+    //   backgroundImg.classList.add("loadEventListener");
+    //   backgroundImg.addEventListener("load", () => {
+    //     loadEnd = true;
+    //     console.log("로드가 끝났어요.");
+    //   });
+    // }
+    if (backgroundImg.complete) loadEnd = true;
     setBgNum(bgNum === 2 ? 0 : bgNum + 1);
     backgroundImg.style.opacity = 0.9;
     const fadeEffect = setInterval(function () {
@@ -36,8 +38,6 @@ export default function BackgroundProvider({ children }) {
       if (opacity > 0)
         backgroundImg.style.opacity = (opacity - 0.03).toString();
       else {
-        // opacity가 0일 때.
-        console.log("opacity가 0입니다.");
         fadeOutEnd = true;
         setBgImg(`${imageList[bgNum]}`);
         clearInterval(fadeEffect);
@@ -45,7 +45,6 @@ export default function BackgroundProvider({ children }) {
     }, 15);
 
     const check = setInterval(() => {
-      console.log(loadEnd, fadeOutEnd);
       if (loadEnd && fadeOutEnd) {
         clearInterval(check);
         fadeIn(backgroundImg);
