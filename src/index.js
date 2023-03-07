@@ -4,11 +4,14 @@ import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import BackgroundProvider from "./context/BackgroundContext";
+import UserProvider from "./context/UserContext";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <BackgroundProvider>
-    <App />
+    <UserProvider>
+      <App />
+    </UserProvider>
   </BackgroundProvider>
 );
 
