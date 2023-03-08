@@ -6,12 +6,11 @@ import {
   onAuthStateChanged,
 } from "firebase/auth";
 import { getDatabase, ref, get, set } from "firebase/database";
-import { v4 } from "uuid";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyB7VvfF_xjwfO3IJ5dXyRiN8ClhphzT8Pg",
+  apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
   authDomain: "legensiablog.firebaseapp.com",
-  projectId: "legensiablog",
+  projectId: process.env.REACT_APP_FIREBASE_PROJECT_ID,
   databaseURL:
     "https://legensiablog-default-rtdb.asia-southeast1.firebasedatabase.app",
   storageBucket: "legensiablog.appspot.com",
@@ -54,20 +53,46 @@ async function getAdminUids() {
   });
 }
 
-export function setBackgroundImg(url) {
-  return set(ref(getDatabase(), "backgroundImages/" + v4()), {
-    url,
-  });
+export async function setBackgroundImg(url) {
+  let array;
+  return get(ref(getDatabase(), "backgroundImages"))
+    .then((snapshot) => {
+      if (snapshot.exists()) array = snapshot.val();
+      else {
+        array = [];
+      }
+    })
+    .then(() => {
+      array.push(url);
+    })
+    .then(() => {
+      set(ref(getDatabase(), "backgroundImages"), array);
+    });
 }
 
 export async function getBackgroundImageUrls() {
   return get(ref(getDatabase(), "backgroundImages/")).then((snapshot) => {
     if (snapshot.exists()) {
-      const obj = Object.values(snapshot.val());
-      const res = obj.map((item) => item.url);
-      return res;
+      return snapshot.val();
     } else {
       return [];
     }
   });
+}
+
+export async function deleteImageUrl(urlToDelete) {
+  let array;
+  get(ref(getDatabase(), "backgroundImages"))
+    .then((snapshot) => {
+      if (snapshot.exists()) array = snapshot.val();
+      else {
+        array = [];
+      }
+    })
+    .then(() => {
+      array = array.filter((url) => url !== urlToDelete);
+    })
+    .then(() => {
+      set(ref(getDatabase(), "backgroundImages"), array);
+    });
 }

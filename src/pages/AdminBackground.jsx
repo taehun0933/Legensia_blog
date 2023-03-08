@@ -1,26 +1,34 @@
 import React, { useState } from "react";
-import { TiDeleteOutline } from "react-icons/ti";
 import { imageUpload } from "../api/cloudinary";
 import { setBackgroundImg } from "../api/firebase";
+import UploadedImage from "../components/UploadedImage";
+import { useBackgroundContext } from "../context/BackgroundContext";
 
 export default function AdminBackground() {
   const [imgFile, setImgFile] = useState();
   const [imgUrl, setImgUrl] = useState();
-  const handleClick = () => {
-    const reallyDelete = window.confirm("정말로 해당 이미지를 삭제할까요?");
-    if (reallyDelete) {
-      // 삭제 처리
-    }
-  };
+  const [success, setSuccess] = useState();
+  const [loading, setLoading] = useState();
+  const { imageList } = useBackgroundContext();
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!imgFile) {
-      alert("선택된 이미지가 없습니다!");
+      alert("선택된 이미지가 없어요");
       return;
     }
     const reallyUpload = window.confirm("해당 이미지를 업로드할까요?");
-    if (reallyUpload)
-      imageUpload(imgFile).then((res) => setBackgroundImg(res.url));
+    if (reallyUpload) {
+      setLoading(true);
+      imageUpload(imgFile)
+        .then((res) => setBackgroundImg(res.url))
+        .then(() => {
+          setSuccess(true);
+          setLoading();
+          setTimeout(() => {
+            setSuccess();
+          }, 3000);
+        });
+    }
   };
   return (
     <div className="flex flex-col items-center">
@@ -37,21 +45,17 @@ export default function AdminBackground() {
         />
         <button
           onClick={handleSubmit}
-          className="border px-2 py-1 bg-slate-300"
+          className={`border px-2 py-1 bg-slate-300 ${
+            loading && "bg-black text-white"
+          }`}
         >
-          등록
+          {loading ? "등록중..." : "등록하기"}
         </button>
       </form>
+      {success && "🙉 성공적으로 처리되었습니다"}
       <section className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-10 p-10">
-        <div className="relative transition-transform hover:scale-105">
-          <button
-            className="absolute z-10 text-2xl right-1 top-1"
-            onClick={handleClick}
-          >
-            <TiDeleteOutline />
-          </button>
-          <img src="/1.png" alt="backgroundImage" />
-        </div>
+        {imageList &&
+          imageList.map((url) => <UploadedImage url={url} key={url} />)}
       </section>
     </div>
   );

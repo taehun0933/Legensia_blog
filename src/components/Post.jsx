@@ -8,7 +8,7 @@ export default function Post({ title, thumbnail }) {
         alt="thumbnail"
         className="h-48 w-full object-cover"
       />
-      <h3 className="text-gray-600 mt-2">{title}</h3>
+      <h3 className="text-gray-600 mt-2 line-clamp-2">{title}</h3>
     </article>
   );
 }

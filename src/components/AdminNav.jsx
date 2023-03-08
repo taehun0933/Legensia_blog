@@ -29,6 +29,13 @@ export default function AdminHeader() {
       >
         카테고리변경
       </button>
+      <button
+        onClick={() => {
+          navigate("/");
+        }}
+      >
+        홈으로
+      </button>
     </nav>
   );
   // admin 전용 navBar 구현.
