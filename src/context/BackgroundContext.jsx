@@ -5,8 +5,8 @@ export const BackgroundContext = createContext();
 
 export default function BackgroundProvider({ children }) {
   const [imageList, setImageList] = useState();
-  const [bgNum, setBgNum] = useState(1);
-  const [bgImg, setBgImg] = useState(imageList && imageList[bgNum]);
+  const [bgNum, setBgNum] = useState(0);
+  const [bgImg, setBgImg] = useState();
   // imageList에서 bgNum번째 원소를 추출하여, bgImg로 설정.
 
   useEffect(() => {
@@ -14,8 +14,9 @@ export default function BackgroundProvider({ children }) {
     getBackgroundImageUrls().then(setImageList);
   }, []);
 
-  //test
-  // if (imageList) console.log(imageList);
+  useEffect(() => {
+    if (imageList) setBgImg(imageList[bgNum]);
+  }, [imageList, bgNum]);
 
   // bgChangeWithAnimation에서의 원하는 로직
   // 1. 현재 이미지 페이드 아웃
@@ -33,7 +34,6 @@ export default function BackgroundProvider({ children }) {
         backgroundImg.style.opacity = (opacity - 0.03).toString();
       else {
         fadeOutEnd = true;
-        setBgImg(`${imageList[bgNum]}`);
         clearInterval(fadeEffect);
       }
     }, 15);
@@ -56,7 +56,6 @@ export default function BackgroundProvider({ children }) {
 
   const bgChange = () => {
     setBgNum(bgNum === 2 ? 0 : bgNum + 1);
-    setBgImg(`${imageList[bgNum]}`);
   };
 
   return (

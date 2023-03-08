@@ -62,7 +62,7 @@ export default function Home() {
       >
         <div className="bg-black">
           <img
-            src={`${bgImg ? bgImg : ""}`}
+            src={bgImg}
             alt="background"
             ref={backgroundImg}
             className="w-screen h-bgDefault object-cover opacity-90"

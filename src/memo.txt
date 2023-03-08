@@ -1,2 +1,1 @@
-일단 admin 입력 시, 로그인 처리 받음.
-이후 로그인했을 때 admin일 시, 
+1. imageList에 이미지들의 url을 받아 옴. (state)
