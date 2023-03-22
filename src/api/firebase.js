@@ -96,3 +96,13 @@ export async function deleteImageUrl(urlToDelete) {
       set(ref(getDatabase(), "backgroundImages"), array);
     });
 }
+
+export async function getCategory() {
+  return get(ref(getDatabase(), "category")).then((snapshot) => {
+    if (snapshot.exists()) {
+      return snapshot.val();
+    } else {
+      return null;
+    }
+  });
+}

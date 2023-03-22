@@ -4,8 +4,6 @@ import { useBackgroundContext } from "../context/BackgroundContext";
 
 export default function SideNav() {
   const { bgImg } = useBackgroundContext();
-  // 왜 변경되기 전의 value들이 뜨지? => 기존에 Outlet과 Home이 다른 경로에 있어 두 곳을 모두 Provider로 감싸 주었는데, 결과적으로 값이 공유되는 것이 아닌 각각의 값들이 별도로 존재하게 되었음.
-  // 그렇기에, 공통된 값을 가지도록 index.js의 App 컴포넌트(전체를 아우르는)를 Provider로 감싸 주었음. 문제 해결!
   const navigate = useNavigate();
   const WHITE_MEDIUM_TEXT =
     "text-white uppercase m-auto font-medium text-lg hover:cursor-pointer textShadow";

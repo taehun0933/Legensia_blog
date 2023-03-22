@@ -41,7 +41,7 @@ export default function BackgroundProvider({ children }) {
     //     fadeIn(backgroundImg);
     //   }
     // }, 100);
-    setBgNum(bgNum === 2 ? 0 : bgNum + 1);
+    setBgNum(bgNum === imageList.length - 1 ? 0 : bgNum + 1);
   };
   // const fadeIn = (backgroundImg) => {
   //   const fadeEffect = setInterval(function () {
@@ -53,7 +53,7 @@ export default function BackgroundProvider({ children }) {
   // };
 
   const bgChange = () => {
-    setBgNum(bgNum === 2 ? 0 : bgNum + 1);
+    setBgNum(bgNum === imageList.length - 1 ? 0 : bgNum + 1);
   };
 
   return (

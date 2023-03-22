@@ -5,6 +5,7 @@ import { useUserContext } from "../context/UserContext";
 export default function Protected({ children }) {
   const navigate = useNavigate();
   const { userData } = useUserContext();
+
   useEffect(() => {
     if (!userData || !userData.isAdmin) navigate("/", { replace: true });
   }, [navigate, userData]);
