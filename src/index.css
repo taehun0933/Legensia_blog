@@ -27,3 +27,8 @@ code {
 .logoShadow {
   text-shadow: 6px 2px 2px gray;
 }
+
+.behindBg {
+  position: relative;
+  top: 68.4rem;
+}

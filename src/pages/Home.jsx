@@ -13,7 +13,7 @@ export default function Home() {
   const [contact, setContact] = useState(false);
   const [showContactIcons, setShowContactIcons] = useState(false);
   const [refConnected, setRefConnected] = useState(false);
-  const { bgChangeWithAnimation, bgImg } = useBackgroundContext();
+  const { bgChangeWithAnimation, bgImg, imageList } = useBackgroundContext();
   const toggleContact = () => {
     if (!contact) {
       setContact(!contact);
@@ -28,11 +28,18 @@ export default function Home() {
     }
   };
   const handleClick = () => {
-    bgChangeWithAnimation(backgroundImg.current);
+    bgChangeWithAnimation(
+      frontBg.current,
+      backBgImg.current,
+      frontBgImg.current,
+      landscapeLogo.current
+    );
   };
 
-  const backgroundImg = useRef();
   const landscapeLogo = useRef();
+  const frontBg = useRef();
+  const backBgImg = useRef();
+  const frontBgImg = useRef();
   useEffect(() => {
     if (landscapeLogo.current) setRefConnected(true);
     if (refConnected)
@@ -60,16 +67,26 @@ export default function Home() {
           contact && "translate-y-48"
         }`}
       >
-        <div className="bg-black">
+        <div className="bg-black behindBg -z-10">
+          <img
+            src={imageList && imageList[0]}
+            alt="background"
+            className="w-screen h-bgDefault object-cover opacity-90"
+            ref={backBgImg}
+          />
+        </div>
+        <div
+          className="bg-black transition-opacity duration-1000 opacity-0"
+          ref={frontBg}
+        >
           <img
             src={bgImg}
             alt="background"
-            ref={backgroundImg}
             className="w-screen h-bgDefault object-cover opacity-90"
-            // BackgroundContext에서 opacity 90으로 설정해서, 살짝 어둡게 설정해 주었음.
+            ref={frontBgImg}
           />
         </div>
-        <div className="absolute bottom-5 w-full">
+        <div className="absolute z-20 bottom-5 w-full">
           <img
             src="/background.svg"
             alt="landscapeLogo"
